@@ -34,5 +34,13 @@ int main() {
     newBoard.printBoard();
     fakeBoard.placeMines();
     fakeBoard.printBoard();
+    // string row;
+    // string col;
+    // cin >> row;
+    // cin >> col;
+    // fakeBoard.replaceMines(stoi(row), stoi(col));
+    // fakeBoard.printBoard();
+
+
     return 0;
 }

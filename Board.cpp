@@ -8,6 +8,10 @@ using namespace std;
 
 
 
+bool isValid(int row, int col){
+    return (row >= 0) && (row < boardSize) && (col >= 0) && (col < boardSize);
+}
+
 Board::Board(){
     board.resize(boardSize, vector<char>(boardSize, '-'));
 }
@@ -18,11 +22,13 @@ Board::~Board(){
 void Board::printBoard(){
     cout << "    ";
     for (int i = 0; i < boardSize; ++i)
-        cout << i+1 << " ";
+        // cout << i+1 << " ";
+        cout << i << " ";
     cout << "\n\n";
 
     for (int i = 0; i < boardSize; ++i) {
-        std::cout << i + 1 << "   ";
+        // cout << i + 1 << "   ";
+        cout << i << "   ";
         for (int j = 0; j < boardSize; ++j)
             cout << board[i][j] << " ";
         cout << "\n";
@@ -58,3 +64,32 @@ bool Board::isMine(int row, int col){
     return true;
 }
 
+int Board::countAdjMines(int row, int col){
+    int count = 0;
+    int dx[8] = { -1, -1, -1, 0, 0, 1, 1, 1 };
+    int dy[8] = { -1, 0, 1, -1, 1, -1, 0, 1 };
+    for(int pos = 0; pos < 8; pos++){
+        int updateRow = row + dx[pos];
+        int updateCol = col + dy[pos];
+        if(isValid(updateRow, updateCol)){
+            if(isMine(updateRow, updateCol)){
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+void Board::replaceMines(int row, int col){
+    board[row][col] = '-';
+    
+    for(int r = 0; r < board.size(); r++){
+        for(int c = 0; c < board.size(); c++){
+            if(board[r][c] == '-'){
+                board[r][c] = '*';
+                return;
+            }
+        }
+    }
+    return;
+}
