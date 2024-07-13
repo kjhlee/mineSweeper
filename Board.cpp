@@ -2,8 +2,12 @@
 #include "globals.h"
 #include <vector>
 #include <iostream>
-
+#include <utility> 
+#include <algorithm>
 using namespace std;
+
+
+
 Board::Board(){
     board.resize(boardSize, vector<char>(boardSize, '-'));
 }
@@ -26,6 +30,31 @@ void Board::printBoard(){
 }
 
 void Board::placeMines(){
+    srand(time(0));
+    while(placedMines.size() < numMines){
+        int row = rand() % boardSize;
+        int col = rand() % boardSize;
+        bool placed = false;
+        for(auto mines : placedMines){
+            if(row == mines.first && col == mines.second){
+                placed = true;
+                break;
+            }
+        }
+        if(!placed){
+            placedMines.push_back(make_pair(row, col));
+            board[row][col] = '*';
+        }
+    }
     return; 
+}
+
+bool Board::isMine(int row, int col){
+    pair<int, int> p = make_pair(row, col);
+    auto it = find(placedMines.begin(), placedMines.end(), p);
+    if(it == placedMines.end()){
+        return false;
+    }
+    return true;
 }
 

@@ -30,7 +30,9 @@ void levelPick(){
 int main() {
     levelPick();
     cout << boardSize << " " << numMines << endl;
-    Board newBoard;
+    Board newBoard, fakeBoard;
     newBoard.printBoard();
+    fakeBoard.placeMines();
+    fakeBoard.printBoard();
     return 0;
 }
