@@ -20,7 +20,7 @@ void Game::playMinesweeper(Board& gameBoard, Board& fakeBoard){
         fakeBoard.printBoard();
         gameBoard.printBoard();
         int row, col;
-        makeMove(row, col);
+        makeMove(gameBoard, row, col);
         if(playMinesweeperUtil(gameBoard, fakeBoard, row, col)){
             gameOver = true;
             cout << "Game over!" << endl;
@@ -67,15 +67,27 @@ bool Game::playMinesweeperUtil(Board& gameBoard, Board& fakeBoard, int row, int 
     }
     return false;
 }
-void Game::makeMove(int& x, int& y){
+void Game::makeMove(Board& myBoard, int& x, int& y){
     bool validMove = false;
+    char moveType;
     while(!validMove){
-        cout<< "Enter a move (row, column): ";
-        cin >> x >> y;
-        if(isValidMove(x, y)){
-            validMove = true;
-        } else {
-            cout << "Invalid move, please try again";
+        cout << "Enter a move type, 'P' to place mines and 'R' to reveal areas: " << endl;
+        cin >> moveType;
+        if(moveType == 'P'){
+            int r;
+            int c;
+            cout << "Enter where you'd like to place the flag";
+            cin >> r >> c;
+            myBoard.board[r][c] = 'X';
+            myBoard.printBoard();
+        } else if(moveType == 'R'){
+            cout<< "Enter a move (row, column): ";
+            cin >> x >> y;
+            if(isValidMove(x, y)){
+                validMove = true;
+            } else {
+                cout << "Invalid move, please try again";
+            }
         }
     }
 

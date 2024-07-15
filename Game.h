@@ -13,7 +13,7 @@ public:
     Game();
     void playMinesweeper(Board& gameBoard, Board& fakeBoard);
     bool playMinesweeperUtil(Board& gameBoard, Board& fakeBoard, int row, int col);
-    void makeMove(int& x, int& y);
+    void makeMove(Board& myBoard, int& x, int& y);
     bool isGameOver();
     bool checkWin(Board& myBoard, Board& fakeBoard);
 };
