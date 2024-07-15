@@ -82,7 +82,6 @@ int Board::countAdjMines(int row, int col){
 
 void Board::replaceMines(int row, int col){
     board[row][col] = '-';
-    
     for(int r = 0; r < board.size(); r++){
         for(int c = 0; c < board.size(); c++){
             if(board[r][c] == '-'){

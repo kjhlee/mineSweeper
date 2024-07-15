@@ -1,5 +1,6 @@
 #include "globals.h"
 #include "Board.h"
+#include "Game.h"
 #include <iostream>
 #include <istream>
 using namespace std;
@@ -31,16 +32,15 @@ int main() {
     levelPick();
     cout << boardSize << " " << numMines << endl;
     Board newBoard, fakeBoard;
-    newBoard.printBoard();
-    fakeBoard.placeMines();
-    fakeBoard.printBoard();
     // string row;
     // string col;
     // cin >> row;
     // cin >> col;
     // fakeBoard.replaceMines(stoi(row), stoi(col));
     // fakeBoard.printBoard();
-
-
+    Game newGame;
+    // newGame.makeMove(newBoard, x, y);
+    newGame.playMinesweeper(newBoard, fakeBoard);
+    
     return 0;
 }
