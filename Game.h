@@ -8,6 +8,7 @@ using namespace std;
 class Game {
 private:
     int numMoves;
+    bool firstMove;
     bool gameOver;
 public:
     Game();

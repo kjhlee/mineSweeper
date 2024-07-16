@@ -10,6 +10,7 @@ bool isValidMove(int row, int col){
 }
 
 Game::Game(){
+    firstMove = true;
     gameOver = false;
     numMoves = 0;
 }
@@ -39,16 +40,18 @@ bool Game::playMinesweeperUtil(Board& gameBoard, Board& fakeBoard, int row, int 
         return false;
     }
     if(fakeBoard.isMine(row, col)){
-        if(numMoves == 0){
-            numMoves += 1;
+        if(firstMove){
+            firstMove = false;
             fakeBoard.replaceMines(row, col);
+            return playMinesweeperUtil(gameBoard, fakeBoard, row, col);
         } else {
             gameBoard.board[row][col] = '*';
             gameBoard.printBoard();
             return true;
-
         }
     }
+    firstMove = false;
+
     int adjMines = fakeBoard.countAdjMines(row, col);
     if(!fakeBoard.isMine(row,col)){
         gameBoard.board[row][col] = adjMines + '0';
