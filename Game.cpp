@@ -17,7 +17,7 @@ Game::Game(){
 void Game::playMinesweeper(Board& gameBoard, Board& fakeBoard){
     fakeBoard.placeMines();
     while(!isGameOver()){
-        fakeBoard.printBoard();
+        // fakeBoard.printBoard();
         gameBoard.printBoard();
         int row, col;
         makeMove(gameBoard, row, col);
