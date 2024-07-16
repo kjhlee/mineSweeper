@@ -1,8 +1,10 @@
+#include <SFML/Graphics.hpp>
 #include "globals.h"
 #include "Board.h"
 #include "Game.h"
 #include <iostream>
 #include <istream>
+#include <string>
 using namespace std;
 
 
